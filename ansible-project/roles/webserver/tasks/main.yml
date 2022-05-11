@@ -1,0 +1,23 @@
+---
+# tasks file for roles/webserver
+- name: Get nginx and necessary packages
+  apt:
+    name: '{{ item.package }}'
+    state: latest
+  loop:
+    - {package: 'nginx'}
+    - {package: 'php-fpm'}
+    - {package: 'php-mysql'}
+  notify:
+    - restart_and_enable_packages
+
+- name: Open ports for http and https
+  ufw:
+    rule: allow
+    port: '{{ item.port }}'
+    proto: tcp
+  loop:
+    - {purpose: 'http', port : '80'}
+    - {purpose: 'https', port : '443'}
+  notify:
+    - restart_ufw
