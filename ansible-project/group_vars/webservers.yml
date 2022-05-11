@@ -1,0 +1,3 @@
+ansible_user: ubuntu
+ansible_password: Azerty123
+ansible_become_password: Azerty123

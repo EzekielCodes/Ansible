@@ -1,0 +1,42 @@
+---
+  all:
+    children:
+      controlhosts:
+        hosts:
+          controlnode1:
+            ansible_host: 10.129.25.87
+      dbservers:
+        hosts:
+          host3:
+            ansible_host: 10.129.25.90
+        #vars:
+          #ansible_user: student
+          #ansible_become: yes
+          #ansible_connection: ssh
+          #ansible_become_method: sudo
+          #ansible_become_pass: student
+    
+      loadbalancers:
+        hosts:
+          host3:
+            ansible_host: 10.129.25.90
+      routers:
+        hosts:
+          CSR1000v:
+            ansible_host: 10.129.25.6
+
+      webservers:
+        hosts:
+          webnode1:
+            ansible_host: 10.129.25.88
+          webnode2:
+            ansible_host: 10.129.25.89
+        #vars:
+          #ansible_user: ubuntu
+          #ansible_become: yes
+          #ansible_connection: ssh
+          #ansible_become_method: sudo
+          #ansible_become_pass: Azerty123
+    vars:
+      ansible_become: yes
+      ansible_connection: ssh

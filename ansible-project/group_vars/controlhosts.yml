@@ -1,0 +1,3 @@
+ansible_user: student
+ansible_password: student
+ansible_connection: local
