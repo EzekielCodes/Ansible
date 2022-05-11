@@ -3,3 +3,9 @@
   hosts: webservers, loadbalancers
   roles:
    - common
+
+
+- name: Install webserver and packages
+  hosts: webservers
+  roles:
+    - webserver
