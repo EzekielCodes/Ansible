@@ -1,0 +1,5 @@
+---
+- name: Update software
+  hosts: webservers, loadbalancers
+  roles:
+   - common
