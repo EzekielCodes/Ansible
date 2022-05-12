@@ -1,0 +1,4 @@
+---
+# vars file for roles/database
+newusername: ezekiel
+newuserpassword: Azerty123

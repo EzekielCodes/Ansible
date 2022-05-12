@@ -1,0 +1,41 @@
+---
+# tasks file for roles/database
+- name: Install MySQL
+  yum:
+    name: mysql-server
+    state: latest
+  notify:
+    - enable_mysql-server
+
+- name: Allow connection to MySQL from webservers
+  firewalld:
+    zone: public
+    permanent: true
+    source: '{{ ansible_default_ipv4.address }}'
+    state: enabled
+  loop: "{{ groups['webservers'] }}"
+  notify:
+    - restart_firewall_centos
+
+- name: Make sure MySQL is started
+  service:
+    name: mysqld
+    state: started
+
+
+- name: Create new MySQL user if doesn't exist
+  command: mysql --user=root --password="" --execute="CREATE USER IF NOT EXISTS '{{ newusername }}' IDENTIFIED BY '{{ newuserpassword }}';"
+
+- name: Create new database if doesn't exist
+  command: mysql --user=root --password="" --execute="CREATE DATABASE IF NOT EXISTS ezekielakindele";
+
+- name: Grant all privileges to user
+  command: mysql --user=root --password="" --execute="GRANT ALL PRIVILEGES ON *.* TO '{{ newusername }}' WITH GRANT OPTION";
+
+- name: Select some info from MySQL.user
+  command: mysql --user={{ newusername }} --password={{ newuserpassword }} --execute="SELECT user, host, password_last_changed FROM mysql.user;"
+  register: info
+
+- name: Output selected info
+  debug:
+    msg: "{{ info.stdout_lines }}"
