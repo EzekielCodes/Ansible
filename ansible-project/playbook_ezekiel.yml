@@ -24,3 +24,9 @@
   hosts: loadbalancers
   roles:
     - loadbalancer
+
+
+- name: Edit hosts file and hostname
+  hosts: controlhosts, webservers, loadbalancers
+  roles:
+    - varia

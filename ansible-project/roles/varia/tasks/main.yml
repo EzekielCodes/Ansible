@@ -1,0 +1,12 @@
+---
+# tasks file for roles/varia
+- name: Add mappings to /etc/hosts
+  lineinfile:
+    path: /etc/hosts
+    line: "{{ hostvars[item]['ansible_host'] }} {{ item }}"
+  loop: "{{ groups['all'] }}"
+
+- name: Set hostname to name of node
+  hostname:
+    name: '{{ inventory_hostname }}'
+  
