@@ -1,0 +1,26 @@
+---
+# tasks file for roles/website-github
+
+- name: Install git
+  apt:
+    name: git
+    state: present
+    update-cache: yes
+
+
+- name: Remove files in /var/www/html
+  file:
+    path: /var/www/html
+    state: absent
+
+- name: Get website from GitHub
+  git:
+    repo: 'https://github.com/poojan1812/Ansible'
+    dest: /var/www/html
+
+- name: Copy configuration
+  copy:
+    src: nginx_default_conf
+    dest: /etc/nginx/sites-available/default
+  notify:
+    - restart_nginx

@@ -14,3 +14,13 @@
   hosts: dbservers
   roles:
     - database
+
+- name: Configure website
+  hosts: webservers
+  roles:
+    - website-github
+
+- name: Configure loadbalancer
+  hosts: loadbalancers
+  roles:
+    - loadbalancer

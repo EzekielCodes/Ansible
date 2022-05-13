@@ -1,0 +1,18 @@
+---
+# handlers file for roles/loadbalancer
+- name: restart_haproxy
+  service:
+    name: haproxy
+    state: restarted
+    enabled: yes
+
+- name: name_connect_access
+  seboolean:
+    name: name_connect
+    state: yes
+    persistent: yes
+
+- name: restart_firewalld
+  service:
+    name: firewalld
+    state: restarted

@@ -1,0 +1,9 @@
+---
+# vars file for roles/loadbalancer
+
+server1name: "{{ hostvars['webnode1'].ansible_hostname }}"
+server2name: "{{ hostvars['webnode2'].ansible_hostname }}"
+server1ip: "{{ hostvars['webnode1'].ansible_default_ipv4.address }}"
+server2ip: "{{ hostvars['webnode2'].ansible_default_ipv4.address }}"
+
+listening_port: 80

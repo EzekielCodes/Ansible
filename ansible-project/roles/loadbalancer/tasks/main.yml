@@ -1,0 +1,21 @@
+---
+# tasks file for roles/loadbalancer
+- name: Install HAproxy
+  yum:
+    name: haproxy
+    state: latest
+
+- name: Copy configuration and restart
+  template:
+    src: haproxy.j2
+    dest: /etc/haproxy/haproxy.cfg
+  notify:
+    - restart_haproxy
+
+- name: Open listening port
+  firewalld:
+    port: "{{ listening_port }}/tcp"
+    state: enabled
+    permanent: yes
+  notify:
+    - restart_firewalld
