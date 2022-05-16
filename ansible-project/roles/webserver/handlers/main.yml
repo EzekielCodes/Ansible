@@ -7,7 +7,7 @@
     enabled: yes
   loop:
     - {package: 'nginx'}
-    - {package: 'php8.1.2-fpm'}
+    - {package: 'php-fpm'}
 
 - name: restart_ufw
   service:
