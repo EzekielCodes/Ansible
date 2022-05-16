@@ -1,4 +1,4 @@
 ---
 # vars file for roles/database
-newusername: ezekiel
-newuserpassword: Azerty123
+username: ezekiel
+userpassword: Azerty123

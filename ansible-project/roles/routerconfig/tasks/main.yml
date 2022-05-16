@@ -1,0 +1,12 @@
+---
+# tasks file for roles/routerconfig
+- name: Change hostname
+  cisco.ios.ios_config:
+    lines: 
+      - hostname {{ routerNaam }}
+
+- name: Backup running_config
+  cisco.ios.ios_config:
+    backup: yes
+    backup_options:
+      dir_path: "/home/student/2122-iac_ansible_project-akindele-toluwani-ezekiel/ansible-project/backups/{{routerNaam}}.txt"

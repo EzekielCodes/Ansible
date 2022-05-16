@@ -30,3 +30,9 @@
   hosts: controlhosts, webservers, loadbalancers
   roles:
     - varia
+
+- name: Configure cisco router
+  hosts: routers
+  gather_facts: no
+  roles:
+    - routerconfig
