@@ -23,10 +23,10 @@
     state: started
 
 
-- name: Create new MySQL user if doesn't exist
+- name: Create new MySQL user 
   command: mysql --user=root --password="" --execute="CREATE USER IF NOT EXISTS '{{ username }}' IDENTIFIED BY '{{ userpassword }}';"
 
-- name: Create new database if doesn't exist
+- name: Create new database 
   command: mysql --user=root --password="" --execute="CREATE DATABASE IF NOT EXISTS ezekielakindele";
 
 - name: Grant all privileges to user
@@ -36,6 +36,6 @@
   command: mysql --user={{ username }} --password={{ userpassword }} --execute="SELECT user, host, password_last_changed FROM mysql.user;"
   register: info
 
-- name: Output selected info
+- name: Output selected info 
   debug:
     msg: "{{ info.stdout_lines }}"

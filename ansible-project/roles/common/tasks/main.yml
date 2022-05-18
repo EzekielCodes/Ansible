@@ -13,7 +13,7 @@
     force_apt_get: yes
   when: ansible_facts['distribution'] == "Ubuntu"
 
-- name: Manage firewall to accept SSH on Ubuntu, restart if necessary
+- name: allow firewall accept ssh on ubuntu 
   ufw:
     rule: allow
     port: '22'
@@ -28,7 +28,7 @@
     state: latest
   when: ansible_facts['distribution'] == "CentOS"
 
-- name: Manage firewall to accept SSH on CentOS, restart if necessary
+- name: allow firewall accept ssh on ubuntu 
   firewalld:
     port: 22/tcp
     state: enabled

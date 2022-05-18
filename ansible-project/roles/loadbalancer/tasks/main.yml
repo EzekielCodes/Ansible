@@ -5,14 +5,14 @@
     name: haproxy
     state: latest
 
-- name: Copy configuration and restart
+- name: kopie configuration en restart
   template:
     src: haproxy.j2
     dest: /etc/haproxy/haproxy.cfg
   notify:
     - restart_haproxy
 
-- name: Open listening port
+- name: Open listening port via variable
   firewalld:
     port: "{{ listening_port }}/tcp"
     state: enabled

@@ -5,12 +5,12 @@
    - common
 
 
-- name: Install webserver/packages
+- name: Installeer webserver/packages
   hosts: webservers
   roles:
     - webserver
 
-- name: Install and configure database 
+- name: Installeer and configure database 
   hosts: dbservers
   roles:
     - database

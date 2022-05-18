@@ -24,6 +24,7 @@
             ansible_host: 10.129.25.88
           webnode2:
             ansible_host: 10.129.25.89
+            
     vars:
       ansible_become: yes
       ansible_connection: ssh
